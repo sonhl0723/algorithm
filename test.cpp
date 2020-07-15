@@ -1,41 +1,52 @@
 #include <iostream>
-#include <stack>
-#include <string>
+#include <vector>
 
 using namespace std;
 
 int main(){
-  ios_base::sync_with_stdio(false);
-  cin.tie(nullptr);
+  vector<char> first_elem;
+  vector<char> second_elem;
 
-  int n;
-  cin >> n;
+  cin >> first_elem >> second_elem;
 
-  cin.ignore();
-
-  while(n--){
-    string example;
-    getline(cin, example);
-    example += "\n";
-
-    stack<char> stc;
-
-    for(char c : example){
-      if(c == ' ' || c == '\n'){
-        while(!stc.empty()){
-          cout << stc.top();
-          stc.pop();
-        }
-        cout << c;
-      }
-      else{
-        stc.push(c);
-      }
-    }
-  }
+  cout << first_elem << endl;
+  cout << second_elem << endl;
 
   return 0;
 }
+
+// int main(){
+//   ios_base::sync_with_stdio(false);
+//   cin.tie(nullptr);
+//
+//   int n;
+//   cin >> n;
+//
+//   cin.ignore();
+//
+//   while(n--){
+//     string example;
+//     getline(cin, example);
+//     example += "\n";
+//
+//     stack<char> stc;
+//
+//     for(char c : example){
+//       if(c == ' ' || c == '\n'){
+//         while(!stc.empty()){
+//           cout << stc.top();
+//           stc.pop();
+//         }
+//         cout << c;
+//       }
+//       else{
+//         stc.push(c);
+//       }
+//     }
+//   }
+//
+//   return 0;
+// }
 
 // struct Stack{
 //   int data[10000];
