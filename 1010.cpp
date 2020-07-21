@@ -3,6 +3,12 @@
 
 using namespace std;
 
+long long Combination_Permu(int distinction, int A, int B){
+  long long result;
+
+
+}
+
 int main(void){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
@@ -16,23 +22,7 @@ int main(void){
 
     cin >> N >> M;
 
-    long long a = M;
-    long long b = M - N;
-    long long result;
-
-    if(b != 0){
-      for(int i = 1; i < (M - N); i++){
-        a = a * (M - i);
-        b = b * ((M - N) - i);
-        result = a / b;
-      }
-    }
-    else{
-      result = M / N;
-    }
-
-
-    cout << result << '\n';
+    cout << Combination_Permu(M - N, M, N) << '\n';
   }
 
   return 0;
