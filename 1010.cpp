@@ -3,12 +3,6 @@
 
 using namespace std;
 
-long long Combination_Permu(int distinction, int A, int B){
-  long long result;
-
-
-}
-
 int main(void){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
@@ -19,10 +13,28 @@ int main(void){
 
   while(T--){
     int N, M;
-
     cin >> N >> M;
 
-    cout << Combination_Permu(M - N, M, N) << '\n';
+    int bridge[31][31] = {0};
+
+    for(int i = 0; i <= M; i++){
+      for(int j = 0; j <= N; j++){
+        if(j == 0){
+          bridge[i][j] = 0;
+        }
+        else if(j == 1){
+          bridge[i][j] = i;
+        }
+        else if(i == j){
+          bridge[i][j] = 1;
+        }
+        else{
+          bridge[i][j] = bridge[i - 1][j - 1] + bridge[i - 1][j];
+        }
+      }
+    }
+
+    cout << bridge[M][N] << '\n';
   }
 
   return 0;
