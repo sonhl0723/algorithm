@@ -9,27 +9,44 @@ int main(void){
   cin.tie(NULL);
 
   int N, M;
-  int result = 0;
 
   cin >> N >> M;
 
-  int A[N + 1];
+  int A[N];
 
-  for(int i = 0; i < N; i++){
+  for(int k = 0; k < N; k++){
     int a;
     cin >> a;
-    A[i] = a;
-    for(int j = 0; j <= i; j++){
-      if(result == 0 && abs(A[j] - A[i]) >= M){
-        result = abs(A[j] - A[i]);
-      }
-      else if(abs(A[j] - A[i]) >= M){
-        result = min(result, abs(A[j] - A[i]));
-      }
-    }
+    A[k] = a;
   }
 
-  cout << result << '\n';
+  sort(A, A + N);
+
+  int i = 0;
+  int j = 1;
+  int ans = 2147483647;
+
+  while(i < N){
+    if(A[j] - A[i] < M){
+      j++;
+      continue;
+    }
+
+    if(A[j] - A[i] == M){
+      ans = M;
+      break;
+    }
+
+    if(M == 0){
+      ans = A[j] - A[i];
+      break;
+    }
+
+    ans = min(ans, A[j] - A[i]);
+    i++;
+  }
+
+  cout << ans << '\n';
 
   return 0;
 }
