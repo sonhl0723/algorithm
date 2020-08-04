@@ -4,15 +4,30 @@
 
 using namespace std;
 
+int N, M;
 bool visit[1000];
 vector< vector<int> > v;
-int ans = 1;
 
-void dfs(int index, int count){
+void dfs(int index, int count, int ans){
   visit[index] = true;
-  for(int i = 0; i < v[index].size(); i++){
-    
+
+  if(count == N){
+    return;
   }
+
+  for(int i = 0; i < v[index].size(); i++){
+    cout << v[index][i];
+    int next = v[index][i];
+    if(visit[next]){
+      continue;
+    }
+    dfs(next, count + 1, ans);
+    if(count == N){
+      return;
+    }
+  }
+
+  ans = ans + 1;
 }
 
 int main(void){
@@ -20,7 +35,7 @@ int main(void){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  int N, M;
+  int ans = 1;
 
   cin >> N >> M;
 
@@ -32,10 +47,9 @@ int main(void){
     v[b].push_back(a);
   }
 
-  memset(visit, false, sizeof(visit));
-
   for(int j = 1; j < N + 1; j++){
-    dfs(j, ans);
+    memset(visit, false, sizeof(visit));
+    dfs(j, 1, ans);
   }
 
   cout << ans << '\n';
