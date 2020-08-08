@@ -1,33 +1,40 @@
 #include <iostream>
 #include <cstdio>
 #include <vector>
+#include <cstring>
 
 using namespace std;
 
-int N, M;
-bool visit[1000];
-vector< vector<int> > v;
+vector<int> v[1001];
+bool visit[1001];
+int ans = 0;
+bool check = false;
+int count_E = 1;
 
-void dfs(int index, int count, int ans){
-  visit[index] = true;
 
-  if(count == N){
+void dfs(unsigned seq, int count, int size_N){
+  if(count_E == size_N){
+    check = true;
     return;
   }
 
-  for(int i = 0; i < v[index].size(); i++){
-    cout << v[index][i];
-    int next = v[index][i];
+  visit[seq] = true;
+
+  for(int i = 0; i < v[seq].size(); i++){
+    int next = v[seq][i];
     if(visit[next]){
       continue;
     }
-    dfs(next, count + 1, ans);
-    if(count == N){
+
+    count_E++;
+
+    dfs(next, count_E, size_N);
+
+    if(count_E == size_N){
+      check = true;
       return;
     }
   }
-
-  ans = ans + 1;
 }
 
 int main(void){
@@ -35,7 +42,7 @@ int main(void){
   cin.tie(NULL);
   cout.tie(NULL);
 
-  int ans = 1;
+  int N, M;
 
   cin >> N >> M;
 
@@ -47,9 +54,16 @@ int main(void){
     v[b].push_back(a);
   }
 
-  for(int j = 1; j < N + 1; j++){
-    memset(visit, false, sizeof(visit));
-    dfs(j, 1, ans);
+  memset(visit, false, sizeof(visit));
+
+  for(int j = 1; j < N+1; j++){
+    if(visit[j] != true){
+      ans++;
+    }
+    dfs(j, count_E, N);
+    if(check){
+      break;
+    }
   }
 
   cout << ans << '\n';
