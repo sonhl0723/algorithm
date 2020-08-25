@@ -25,8 +25,27 @@ int main(void){
   int count = 0;
 
   while(1){
-    
+    if(sum == M){
+      count++;
+    }
+
+    if(sum >= M){
+      sum = sum - v[start];
+      start++;
+    }
+    else if(end == N){
+      if(sum == M){
+        count++;
+      }
+      break;
+    }
+    else{
+      sum = sum + v[end];
+      end++;
+    }
   }
+
+  cout << count << '\n';
 
   return 0;
 }
