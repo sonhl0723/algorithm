@@ -85,8 +85,6 @@ int main(void){
 
     dfs(v[i].first, v[i].second);
 
-    // cout << goat << " " << wolf << '\n';
-
     if(goat > wolf){
       survive_goat = survive_goat + goat;
       goat = 0;
