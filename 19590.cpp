@@ -37,7 +37,7 @@ int main(void){
     return 0;
   }
 
-  
+
 
   cout << sum << '\n';
 
