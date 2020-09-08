@@ -3,10 +3,6 @@
 
 using namespace std;
 
-bool comp(int a, int b){
-  return a > b;
-}
-
 int main(void){
   ios_base::sync_with_stdio(false);
   cin.tie(NULL);
@@ -24,6 +20,7 @@ int main(void){
   }
 
   long long sum = 0;
+  long long ans;
 
   if(N <= 2){
     if(N == 1){
@@ -37,9 +34,23 @@ int main(void){
     return 0;
   }
 
+  sort(arr, arr+N);
 
+  for(int i = 0; i <= N-2; i++){
+    sum = sum + arr[i];
+  }
 
-  cout << sum << '\n';
+  if(sum < arr[N-1]){
+    ans = arr[N-1] - sum;
+  }
+  else if(sum == arr[N-1]){
+    ans = 0;
+  }
+  else{
+    ans = sum - arr[N-1] - ((N-1) * 2);
+  }
+
+  cout << ans << '\n';
 
   return 0;
 }
