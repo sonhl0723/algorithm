@@ -11,43 +11,30 @@ int main(void){
   int N;
   cin >> N;
 
-  int arr[N];
+  int maximum = 0;
+  long long all_bead = 0;
 
   for(int i = 0; i < N; i++){
     int a;
     cin >> a;
-    arr[i] = a;
+    
+    all_bead = all_bead + a;
+    maximum = max(a, maximum);
   }
 
-  long long sum = 0;
+  long long extra_bead = all_bead-maximum;
   long long ans;
 
-  if(N <= 2){
-    if(N == 1){
-      sum = arr[0];
-    }
-    else{
-      sort(arr, arr+N);
-      sum = arr[1] - arr[0];
-    }
-    cout << sum << '\n';
-    return 0;
-  }
-
-  sort(arr, arr+N);
-
-  for(int i = 0; i <= N-2; i++){
-    sum = sum + arr[i];
-  }
-
-  if(sum < arr[N-1]){
-    ans = arr[N-1] - sum;
-  }
-  else if(sum == arr[N-1]){
-    ans = 0;
+  if(maximum > extra_bead){
+    ans = maximum - extra_bead;
   }
   else{
-    ans = sum - arr[N-1] - ((N-1) * 2);
+    if(all_bead % 2 == 0){
+      ans = 0;
+    }
+    else{
+      ans = 1;
+    }
   }
 
   cout << ans << '\n';
