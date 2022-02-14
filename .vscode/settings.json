@@ -9,6 +9,9 @@
         "vector": "cpp",
         "algorithm": "cpp",
         "memory": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "stack": "cpp"
     }
 }
