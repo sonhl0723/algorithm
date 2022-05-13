@@ -13,6 +13,8 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "stack": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "ios": "cpp",
+        "map": "cpp"
     }
 }
