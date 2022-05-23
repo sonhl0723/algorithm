@@ -11,7 +11,6 @@ def dfs(tree, N, answer):
     for num in range(N):
         visited = [0 for _ in range(N)]
         dq = deque(tree[num+1])
-        # answer[num] = len(dq)
         visited[num] = 1
 
         while dq:
