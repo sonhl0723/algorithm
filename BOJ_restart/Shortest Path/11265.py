@@ -3,30 +3,27 @@
 # 1. 폴로이드 알고리즘
 # 삼중 for문을 돌며 최소값으로 map_을 채움
 # 최종 map_의 cost와 요청한 cost를 비교하여 답을 출력
-# => 시간 초과, 파이썬이라 시간 제한이 걸린다고 판단, C++이었으면 됐을듯
-# 2. 다익스트라 알고리즘
-# 
+# => 시간 초과 => for문을 돌릴 때 변수를 지정하지 않는 것으로 해결
 
 import sys
 
 N, M = map(int, sys.stdin.readline().split())
 
-#################### 플로이드 알고리즘
-# map_ = []
+map_ = []
 
-# for _ in range(N): map_.append(list(map(int, sys.stdin.readline().split())))
+for row in range(N):
+    map_.append(list(map(int, sys.stdin.readline().split())))
 
-# for k in range(N):
-#     for i in range(N):
-#         for j in range(N):
-#             if map_[i][j] == 0: map_[i][j] = 1000000001
-            
-#             if (map_[i][k] + map_[k][j]) < map_[i][j]: map_[i][j] = (map_[i][k] + map_[k][j])
+    for col in range(N):
+        if map_[row][col] == 0: map_[row][col] = 1000000001
 
-# for idx in range(M):
-#     i, j, cost = map(int, sys.stdin.readline().split())
+for k in range(N):
+    for i in range(N):
+        for j in range(N):
+            if (map_[i][k] + map_[k][j]) < map_[i][j]: map_[i][j] = (map_[i][k] + map_[k][j])
 
-#     if map_[i-1][j-1] <= cost: print("Enjoy other party")
-#     else: print("Stay here")
+for _ in range(M):
+    i, j, cost = map(int, sys.stdin.readline().split())
 
-#################### 다익스트라 알고리즘
+    if map_[i-1][j-1] <= cost: print("Enjoy other party")
+    else: print("Stay here")
