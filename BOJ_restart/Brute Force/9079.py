@@ -19,9 +19,9 @@ def make_binary(_map):
 
     return _binary
 
-def bfs(_stack, visited):
-    while _stack:
-        origin_map, tmp_cnt = _stack.popleft()
+def bfs(_q, visited):
+    while _q:
+        origin_map, tmp_cnt = _q.popleft()
 
         tmp_bin = int(make_binary(origin_map), 2)
 
@@ -37,7 +37,7 @@ def bfs(_stack, visited):
                 if tmp_map[j][i] == 1: tmp_map[j][i] = 0
                 else: tmp_map[j][i] = 1
 
-            _stack.append([tmp_map, tmp_cnt+1])
+            _q.append([tmp_map, tmp_cnt+1])
 
         # 행 기준
         for i in range(3):
@@ -46,7 +46,7 @@ def bfs(_stack, visited):
                 if tmp_map[i][j] == 1: tmp_map[i][j] = 0
                 else: tmp_map[i][j] = 1
             
-            _stack.append([tmp_map, tmp_cnt+1])
+            _q.append([tmp_map, tmp_cnt+1])
 
         # 대각 기준
         tmp_map = deepcopy(origin_map)
@@ -54,14 +54,14 @@ def bfs(_stack, visited):
             if tmp_map[i][i] == 1: tmp_map[i][i] = 0
             else: tmp_map[i][i] = 1
         
-        _stack.append([tmp_map, tmp_cnt+1])
+        _q.append([tmp_map, tmp_cnt+1])
 
         tmp_map = deepcopy(origin_map)
         for i in range(3):
             if tmp_map[2-i][i] == 1: tmp_map[2-i][i] = 0
             else: tmp_map[2-i][i] = 1
 
-        _stack.append([tmp_map, tmp_cnt+1])
+        _q.append([tmp_map, tmp_cnt+1])
 
     return -1
 
@@ -77,7 +77,7 @@ for _ in range(T):
         _map.append(tmp)
 
     visited = [False]*512
-    _stack = deque()
-    _stack.append([_map, 0])
+    _q = deque()
+    _q.append([_map, 0])
 
-    print(bfs(_stack, visited))
+    print(bfs(_q, visited))
