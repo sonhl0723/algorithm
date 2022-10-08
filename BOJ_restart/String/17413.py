@@ -43,5 +43,3 @@ for ch in _str:
 
 pop_stack(stack)
 print(ans)
-# ans = ans.split('\n')
-# print(ans[0])
