@@ -24,7 +24,7 @@ def dfs():
     global ans, list_, N, M, check_ans, check_ans_len
 
     if len(ans) == M:
-        tmp = ''.join(ans)
+        tmp = ' '.join(ans)
         check_ans.add(tmp)
         if check_ans_len != len(check_ans):
             print(*ans)
